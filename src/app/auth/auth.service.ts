@@ -19,7 +19,7 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -27,8 +27,9 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-          environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDDBKRDFdKAAmwETKbiGM7UYGrqb_Zv4J0',
+        // 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+        //   environment.firebaseAPIKey,
         {
           email: email,
           password: password,
@@ -107,8 +108,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
-        +environment.firebaseAPIKey,
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+          environment.firebaseAPIKey,
         {
           email: email,
           password: password,

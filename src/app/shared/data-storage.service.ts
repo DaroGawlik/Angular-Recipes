@@ -27,13 +27,13 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    this.authService.user.pipe(
+    return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
         return this.http.get<Recipe[]>(
           'https://ng-course-recipe-book-673cb-default-rtdb.europe-west1.firebasedatabase.app/recipes.json',
           {
-            params: new HttpParams().set('auth', user.token),
+            params: new HttpParams().set('auth', user !== null ? user.token : ''),
           }
         );
       }),
