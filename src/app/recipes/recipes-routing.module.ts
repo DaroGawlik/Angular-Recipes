@@ -9,14 +9,11 @@ import { RecipesComponent } from './recipes.component';
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     component: RecipesComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: '',
-        component: RecipeStartComponent,
-      },
+      { path: '', component: RecipeStartComponent },
       { path: 'new', component: RecipeEditComponent },
       {
         path: ':id',
@@ -37,3 +34,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class RecipesRoutingModule {}
+
+

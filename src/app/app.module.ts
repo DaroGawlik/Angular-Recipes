@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { LoggingService } from './logging.service';
+import { StoreModule } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [AppComponent, HeaderCompontent],
@@ -16,6 +18,7 @@ import { LoggingService } from './logging.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot(fromApp.appReducer),
     SharedModule,
     CoreModule,
   ],
